@@ -25,5 +25,21 @@ namespace TAMKShooter
             // TODO: Handle dying properly!
             gameObject.SetActive(false);
         }
+
+        protected void Update()
+        {
+            float moveVertical = Input.GetAxis("Vertical");
+            float moveHorizontal = Input.GetAxis("Horizontal");
+
+            Vector3 input = new Vector3(moveHorizontal, 0, moveVertical);
+
+            Mover.MoveToDirection(input);
+
+            bool shoot = Input.GetButton("Shoot");
+            if (shoot)
+            {
+                Weapons.Shoot(ProjectileLayer);
+            }
+        }
     }
 }
